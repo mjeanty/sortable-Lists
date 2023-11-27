@@ -29,8 +29,10 @@ createList()
 function createList(){
     [...richestPeople]
     .map(a => ({ value: a, sort: Math.random()}))
+    .sort((a, b) => a.sort - b.sort)
+    .map(a => a.value)
     .forEach((person, index) => {
-        console.log(person)
+        
         const listItem = document.createElement('li')
 
         listItem.setAttribute('data-index', index)
@@ -44,4 +46,38 @@ function createList(){
         listItems.push(listItem)
         draggable_list.appendChild(listItem)
     })
+  addEventListeners()  
+}
+
+
+function dragStart(){
+   
+}
+function dragEnter(){
+   
+}
+function dragOver(){
+    
+}
+function dragLeave(){
+  
+}
+function dragDrop(){
+    
+}
+
+function addEventListeners(){
+    const draggables = document.querySelectorAll('.draggable')
+    const dragListItems = document.querySelectorAll('.draggable-list li')
+
+    draggables.forEach(draggable => {
+        draggable.addEventListener('dragstart', dragStart )
+    })
+    dragListItems.forEach(item => {
+        item.addEventListener('dragover', dragOver )
+        item.addEventListener('drop', dragDrop )
+        item.addEventListener('dragenter', dragEnter )
+        item.addEventListener('dragleave', dragLeave )
+    })
+
 }
